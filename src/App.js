@@ -145,6 +145,9 @@ class App extends Component {
     const { width, height, cells, cellSize, isRunning } = this.state
     return (
       <div className="App">
+        <div>
+          Total cells: {cells.length}
+        </div>
         <Board
           width={width}
           height={height}
