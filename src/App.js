@@ -152,13 +152,13 @@ class App extends Component {
           cells={cells}
           onClick={this.handleClick}
         />
-        <div className="control">
+        <div className="controls">
           Update every{' '}
           <input
             value={this.state.interval}
             onChange={this.handleIntervalChange}
           />{' '}
-          msec
+          ms
           {isRunning ? (
             <button className="button" onClick={this.stopGame}>
               Stop

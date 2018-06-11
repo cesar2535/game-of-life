@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './Cell.css'
 
 const Cell = ({ x, y, size }) => (
   <div
