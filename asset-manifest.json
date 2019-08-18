@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cesar2535/game-of-life/static/css/main.42cabb35.chunk.css",
+    "main.js": "/cesar2535/game-of-life/static/js/main.0606c5d6.chunk.js",
+    "main.js.map": "/cesar2535/game-of-life/static/js/main.0606c5d6.chunk.js.map",
+    "runtime~main.js": "/cesar2535/game-of-life/static/js/runtime~main.f70e34ce.js",
+    "runtime~main.js.map": "/cesar2535/game-of-life/static/js/runtime~main.f70e34ce.js.map",
+    "static/js/2.a37d104d.chunk.js": "/cesar2535/game-of-life/static/js/2.a37d104d.chunk.js",
+    "static/js/2.a37d104d.chunk.js.map": "/cesar2535/game-of-life/static/js/2.a37d104d.chunk.js.map",
+    "index.html": "/cesar2535/game-of-life/index.html",
+    "precache-manifest.e2cda9947dcbb9b23c0f875ef389e2a4.js": "/cesar2535/game-of-life/precache-manifest.e2cda9947dcbb9b23c0f875ef389e2a4.js",
+    "service-worker.js": "/cesar2535/game-of-life/service-worker.js",
+    "static/css/main.42cabb35.chunk.css.map": "/cesar2535/game-of-life/static/css/main.42cabb35.chunk.css.map"
+  }
+}
