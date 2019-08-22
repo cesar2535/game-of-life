@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { times } from 'lodash'
+import raf from 'raf'
 import './App.css'
 
 import Board from './components/Board'
@@ -35,7 +36,11 @@ class App extends Component {
 
   startGame = () => {
     this.setState({ isRunning: true })
-    this.loop()
+
+    this.then = Date.now()
+    this.startTime = this.then
+
+    this._frameId = raf(this.loop)
   }
 
   stopGame = () => {
@@ -60,38 +65,42 @@ class App extends Component {
     }, [])
   }
 
-  loop() {
-    const newBoard = this.initlizeBoard()
+  loop = () => {
+    this._frameId = raf(this.loop)
+    const now = Date.now()
+    const elapsed = now - this.then
 
-    const board = newBoard.map((row, y) => {
-      return row.map((col, x) => {
-        const neighbors = this.calculateNeighbors(this.board, x, y)
-        if (this.board[y][x]) {
-          if (neighbors === 2 || neighbors === 3) {
-            return true
+    if (elapsed > this.state.interval) {
+      this.then = now - (elapsed % this.state.interval)
+
+      const newBoard = this.initlizeBoard()
+
+      const board = newBoard.map((row, y) => {
+        return row.map((col, x) => {
+          const neighbors = this.calculateNeighbors(this.board, x, y)
+          if (this.board[y][x]) {
+            if (neighbors === 2 || neighbors === 3) {
+              return true
+            } else {
+              return false
+            }
           } else {
-            return false
+            if (!this.board[y][x] && neighbors === 3) {
+              return true
+            }
+            return col
           }
-        } else {
-          if (!this.board[y][x] && neighbors === 3) {
-            return true
-          }
-          return col
-        }
+        })
       })
-    })
 
-    this.board = board
-    this.setState({ cells: this.makeCells() })
-
-    this._frameId = window.setTimeout(() => {
-      this.loop()
-    }, this.state.interval)
+      this.board = board
+      this.setState({ cells: this.makeCells() })
+    }
   }
 
   stopLoop() {
     if (this._frameId) {
-      window.clearTimeout(this._frameId)
+      raf.cancel(this._frameId)
       this._frameId = null
     }
   }
@@ -145,9 +154,7 @@ class App extends Component {
     const { width, height, cells, cellSize, isRunning } = this.state
     return (
       <div className="App">
-        <div>
-          Total cells: {cells.length}
-        </div>
+        <div>Total cells: {cells.length}</div>
         <Board
           width={width}
           height={height}
